@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/MLDM-Lab1-OperationsOnSets" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MLDM-Lab2-Relation" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MLDM-Lab3-IsRelationFunction" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MLDM-Lab4-ShortestPathOnTheGraph" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MLDM-Lab5-ReachabilityMatrix" vcs="Git" />
+  </component>
+</project>
