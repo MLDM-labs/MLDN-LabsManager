@@ -98,76 +98,83 @@ function getDescription()
     for(let i = 0; i < splitedMatrix.length; i++)
         splitedMatrix[i] = splitedMatrix[i].split(' ');
 
-    let isNumber = true;
-    for(let x = 0; x < splitedMatrix.length; x++)
-        for(let y = 0; y < splitedMatrix[x].length; y++)
-        {
-            if(splitedMatrix[x][y] !== '0' && splitedMatrix[x][y] !== '1')
+    if(rawsCount === 0 || rawsCount === 0)
+    {
+        let isNumber = true;
+        for(let x = 0; x < splitedMatrix.length; x++)
+            for(let y = 0; y < splitedMatrix[x].length; y++)
             {
-                isNumber = false;
+                if(splitedMatrix[x][y] !== '0' && splitedMatrix[x][y] !== '1')
+                {
+                    isNumber = false;
+                    break;
+                }
+            }
+        if(!isNumber)
+        {
+            document.getElementById("output").innerHTML = "The matrix must consist of natural numbers from zero to one";
+            return;
+        }
+
+        let isRectangular = true;
+        for(let x = 1; x < splitedMatrix.length; x++)
+        {
+            if(splitedMatrix[x].length !== splitedMatrix[x - 1].length)
+            {
+                isRectangular = false;
                 break;
             }
         }
-    if(!isNumber)
-    {
-        document.getElementById("output").innerHTML = "The matrix must consist of natural numbers from zero to one";
-        return;
-    }
-
-    let isRectangular = true;
-    for(let x = 1; x < splitedMatrix.length; x++)
-    {
-        if(splitedMatrix[x].length !== splitedMatrix[x - 1].length)
+        if(!isRectangular)
         {
-            isRectangular = false;
-            break;
-        }
-    }
-    if(!isRectangular)
-    {
-        document.getElementById("output").innerHTML = "The matrix must be rectangular";
-        return;
-    }
-
-
-    if((rawsCount > 0) && (columnsCount > 0))
-    {
-        let output = "This relation is";
-        let beforeIsTrue = false;
-
-        if(isReflective(input_matrix.split(/\n| |,|/), columnsCount, rawsCount))
-        {
-            output = output + " reflective";
-            beforeIsTrue = true;
-        }
-        if(isSymmetrical(input_matrix.split(/\n| |,|/), columnsCount, rawsCount))
-        {
-            if(beforeIsTrue)
-                output = output + ", symmetrical";
-            else
-                output = output + " symmetrical";
-            beforeIsTrue = true;
-        }
-        if(isTransitive(input_matrix.split(/\n| |,|/), columnsCount, rawsCount))
-        {
-            if(beforeIsTrue)
-                output = output + ", transitive";
-            else
-                output = output + " transitive";
-            beforeIsTrue = true;
-        }
-        if(isAntiSymmetrical(input_matrix.split(/\n| |,|/), columnsCount, rawsCount))
-        {
-            if(beforeIsTrue)
-                output = output + ", antisymmetric";
-            else
-                output = output + " antisymmetric";
-            beforeIsTrue = true;
+            document.getElementById("output").innerHTML = "The matrix must be rectangular";
+            return;
         }
 
-        document.getElementById("output").innerHTML = output;
+
+        if((rawsCount > 0) && (columnsCount > 0))
+        {
+            let output = "This relation is";
+            let beforeIsTrue = false;
+
+            if(isReflective(input_matrix.split(/\n| |,|/), columnsCount, rawsCount))
+            {
+                output = output + " reflective";
+                beforeIsTrue = true;
+            }
+            if(isSymmetrical(input_matrix.split(/\n| |,|/), columnsCount, rawsCount))
+            {
+                if(beforeIsTrue)
+                    output = output + ", symmetrical";
+                else
+                    output = output + " symmetrical";
+                beforeIsTrue = true;
+            }
+            if(isTransitive(input_matrix.split(/\n| |,|/), columnsCount, rawsCount))
+            {
+                if(beforeIsTrue)
+                    output = output + ", transitive";
+                else
+                    output = output + " transitive";
+                beforeIsTrue = true;
+            }
+            if(isAntiSymmetrical(input_matrix.split(/\n| |,|/), columnsCount, rawsCount))
+            {
+                if(beforeIsTrue)
+                    output = output + ", antisymmetric";
+                else
+                    output = output + " antisymmetric";
+                beforeIsTrue = true;
+            }
+
+            document.getElementById("output").innerHTML = output;
+        }else
+        {
+            document.getElementById("output").innerHTML = "Please, enter the matrix";
+        }
     }else
     {
-        document.getElementById("output").innerHTML = "Please, enter the matrix";
+        document.getElementById("output").innerHTML = "You need to enter the matrix";
     }
+
 }

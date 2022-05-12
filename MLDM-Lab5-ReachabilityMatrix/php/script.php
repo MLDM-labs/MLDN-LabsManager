@@ -19,17 +19,23 @@ class Matrix
     {
         $matrixElements = preg_split('/[ \n]/', $matrixString);
         $matrixSize = sqrt(count($matrixElements));
-        if ($matrixSize - (int)$matrixSize == 0) {
-            $matrixArray = [];
-            for ($i = 0; $i < $matrixSize * $matrixSize; $i++) {
-                $x = $i % $matrixSize;
-                $y = floor($i / $matrixSize);
-                $matrixArray[$x][$y] = $matrixElements[$i];
-            }
-            $this->size = $matrixSize;
-            $this->matrix = $matrixArray;
-        } else
-            $this->errorCode = 1;
+        if($matrixSize <= 1)
+        {
+            $this->errorCode = 404;
+        }
+        else{
+            if ($matrixSize - (int)$matrixSize == 0) {
+                $matrixArray = [];
+                for ($i = 0; $i < $matrixSize * $matrixSize; $i++) {
+                    $x = $i % $matrixSize;
+                    $y = floor($i / $matrixSize);
+                    $matrixArray[$x][$y] = $matrixElements[$i];
+                }
+                $this->size = $matrixSize;
+                $this->matrix = $matrixArray;
+            } else
+                $this->errorCode = 1;
+        }
     }
 
     public function multiplyMatrices($matrix1, $matrix2)
@@ -129,6 +135,11 @@ function printError($errorCode)
             echo "The matrix must be squared.";
             break;
         }
+        case 404:
+        {
+            echo "You need to enter matrix";
+            break;
+        }
     }
 }
 
@@ -137,6 +148,7 @@ echo "<br>";
 
 $matrix = new Matrix();
 $matrix->loadMatrix($inputMatrix);
+
 if($matrix->errorCode == 0)
 {
     $resultMatrix = $matrix->getReachabilityMatrix();

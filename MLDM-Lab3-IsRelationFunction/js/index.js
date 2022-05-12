@@ -33,35 +33,44 @@ function getDescription()
     for(let i = 0; i < relation.length; i++)
         relation[i] = relation[i].split(' ');
 
-
     let errorCode = 0;
-    for(let i = 0; i < relation.length; i++)
+
+    if(set1.length === 0 || set2.length === 0 || relation.length === 0)
     {
-        let set1Meeted = false;
-        for(let j = 0; j < set1.length; j++)
-            if(relation[i][0] === set1[j])
-            {
-                set1Meeted = true;
-                break;
-            }
+        errorCode = 4;
+    }
+    else
+    {
+        for(let i = 0; i < relation.length; i++)
+        {
+            let set1Meeted = false;
+            for(let j = 0; j < set1.length; j++)
+                if(relation[i][0] === set1[j])
+                {
+                    set1Meeted = true;
+                    break;
+                }
 
-        let set2Meeted = false;
-        for(let j = 0; j < set2.length; j++)
-            if(relation[i][1] === set2[j])
-            {
-                set2Meeted = true;
-                break;
-            }
+            let set2Meeted = false;
+            for(let j = 0; j < set2.length; j++)
+                if(relation[i][1] === set2[j])
+                {
+                    set2Meeted = true;
+                    break;
+                }
 
-        if(!set1Meeted && !set2Meeted )
-            errorCode = 3;
-        else if(!set2Meeted)
-            errorCode = 2;
-        else if(!set1Meeted)
-            errorCode = 1;
+            if(!set1Meeted && !set2Meeted )
+                errorCode = 3;
+            else if(!set2Meeted)
+                errorCode = 2;
+            else if(!set1Meeted)
+                errorCode = 1;
+        }
     }
 
-    if(errorCode === 3)
+    if(errorCode === 4)
+        output.innerText = "You need to fill in all fields"
+    else if(errorCode === 3)
         output.innerText = "Some elements from relation are not present in set 1 and set 2"
     else if(errorCode === 2)
         output.innerText = "Some elements from relation are not present in set 2"
