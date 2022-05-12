@@ -7,7 +7,8 @@
 </head>
 <body>
     <h1>Lab 2. Relations</h1>
-    <textarea id = input_pairs></textarea><br><br>
+    <textarea id = input_pairs placeholder = "0 1 0
+0 1 1"></textarea><br><br>
     <button type = "button" onclick = "getDescription()">Press</button>
     <p id = "output"></p>
     <script src = "js/index.js"></script>

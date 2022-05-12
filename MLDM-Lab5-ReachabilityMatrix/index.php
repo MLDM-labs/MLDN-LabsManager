@@ -10,7 +10,11 @@
 </head>
 <body>
     <h1>Reachability matrix</h1>
-    <textarea id = "matrix" cols = "25" rows = "5"></textarea><br>
+    <textarea id = "matrix" cols = "25" rows = "5" placeholder = "Input example:
+0 0 0 0
+0 0 1 0
+1 0 0 1
+1 0 0 0"></textarea><br>
     <button id = "getButton" onclick = "
         let matrix = document.getElementById('matrix').value;
         let message = {'matrix': matrix};
